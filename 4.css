@@ -144,3 +144,12 @@ body {
     left: 65%;
     transform: translateX(-50%);
 }
+
+.computer {
+    position: absolute;
+    top: 64%;
+    left: 75%;
+    width: 40%;
+    transform: translateX(-50%);
+
+}
