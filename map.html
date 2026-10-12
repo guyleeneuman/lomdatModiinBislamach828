@@ -1,43 +1,392 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>שיחות מחייבות-מודיעין</title>
-  <link rel="stylesheet" href="map.css">
-</head>
-<body>
-<img class="logo" src="assets/logo/logo.png" alt="logo">
+  <link rel="stylesheet" href="index.css">
 
-<!-- <div class="button" onclick="goToQ()">
-    <img class="button" src="assets/buttons/toQuestions.png" alt="logo">
-</div> -->
-<div class="overlay" id="overlay">
-    <div class="popUp">
-        <img class="popup" src="assets/elements/popUp.png" alt="logo">
-        <img class="mapBtn" src="assets/buttons/toMap.png" alt="logo" onclick="closePopup()">
-    </div>
+
+</head>
+
+<body>
+
+  <img class="navbar" src="assets/logo/logo.png" alt="logo">
+
+  <div class="byGuylee">
+    פותח על ידי סמל גיאלי נוימן / גפ"ה ביסל"ח
+  </div>
+
+
+<div class="map-container">
+  <img class="map" src="assets/elements/map.png" alt="map">
+  <div id="markers"></div>
 </div>
 
-    <img class="subject1" src="assets/elements/mark1.png" alt="logo">
-    <img class="subject2" src="assets/elements/mark2.png" alt="logo">
-    <img class="subject3" src="assets/elements/mark3.png" alt="logo">
-    <img class="subject4" src="assets/elements/mark4.png" alt="logo">
-    <img class="subject5" src="assets/elements/mark5.png" alt="logo">
-    <img class="subject6" src="assets/elements/mark6.png" alt="logo">
-    <img class="subject7" src="assets/elements/mark7.png" alt="logo">
+<!-- חלונית קריאה -->
+<div class="popup hidden" id="topicPopup">
+  <h2 class="popuph2" id="topicTitle"></h2>
+  <p class="txt" id="topicText"></p>
+  <button class="next-btn" id="nextBtn" onclick="finishTopic()">
+    סיימתי לקרוא
+  </button>
+</div>
+
+  <div class="popup" id="popup">
+    <button class="popup-close" onclick="closePopup()">×</button>
+    <h2 class="popuph2">ברוך הבא לשיחות מחייבות- מודיעין</h2>
+    <p class="txt">בכל שלב בלומדה זו, יופיע לנו איקס על המפה עם נושא שעלינו לקרוא עליו. בסום הקריאה יפתח לנו הנושא הבא. רק לאחר שסיימנו לקרוא בקפידה את כל הנושאים, נוכל לסיים את הלומדה. בסיום הלומדה יש להתחייב שקראנו והבנו את תוכן הלומדה. בהצלחה!</p>
+  </div>
+
+  <script src="main.js"></script>
+
+  <script>
+    function closePopup() {
+      document.getElementById("popup").classList.add("hidden");
+    }
+
     
+const topics = [
+
+{
+  title: "רקע",
+  text: `מדינות רבות, ארגוני טרור, גורמי תקשורת וגורמים אחרים מעוניינים להשיג כמה שיותר מידע עדכני אודות מדינת ישראל וצה”ל בפרט. בינהן- מדינות אויב ואפילו מדינות ידידותיות!
+
+למה? ידע=כח
+
+ועם מידע אפשר לפעול נגד צה"ל.`,
+  x: 76,
+  y: 25
+},
+
+  {
+    title: "בטחון מידע בחרבות ברזל",
+    text: "ריבאט זה מונח שמקורו בקוראן ומשמעותו היא הכנה לעימות. במובן זה- איסוף מידע על מנת להגיע מוכנים לעימותים. מונח זה משתכלל בחדית’, שבמשמעות האיסלמית מצוות הריבאט יותר חשובה ממצוות הג’יהאד.  בנוסף, בחדית’ (אוסף של הלכות באסלאם) מפרטים כי המודיעין שנאסף הוא מודיעין ראיית צה”ל וישיבה במקומות אסטרטגיים.משמע, איסוף מידע יותר חשוב בסולם הערכים מאשר הרג יהודים. מידע בלתי מסווג עבורנו-חשוב עבורם! \n\n קיימות מספר דרכים שבהם האויב מנסה לגשת אלינו:\n -התכתבויות\-הסתננויות\n-הדלפות\n-שיח מסווג בקשר גלוי\n-נגישות למצלמות אבטחה\n-ניתוח אמצעי איסוף\n\n על מנת למנוע את דרכי הגישה של האויב אלינו- נפעל כך:\n -בקשר גלוי: שיח בלמ”ס בלבד. אין לבצע שיח מודיעיני, על פערים מודיעיניים או מבצעיים בהגנה ובעורף.\n-התרעות מודיעיניות יש להעביר רק בטלפון אדום סל”צ או באמצעי קשר מוצפן.\n-חל איסור לבצע שיח מסווג בקרבת טלפונים סלולריים.\n-אין להעלות תמונות אשר ניתן להבחין דרכן מהו מיקום הכח או תמונות המכילות אמל”ח מסווג ברקע.\n-אין לבצע תיוג מיקום של שטחי כינוס, היערכות, מפקדות ומרחבים בהם מתבצעת פעילות מבצעית.-אין להכניס טלפונים סלולריים או מחשב לחפ”קים או מרחבים עם שיח מסווג.\n -יש לשמור על שגרה מבצעית על פי הנחיות מפקדים בשטח על מנת להמנע מחשיפת כוחותנו על ידי איסוף חזותי של האויב.",
+    x: 50,
+    y: 24
+  },
+  {
+    title: "רשתות חברתיות",
+    text: "הנחיות לפעילות ברשתות החברתיות:\n -לא דוקרים מיקומים של בסיסים/ שטחים או מיקומים צבאיים.\n-לא מצלמים בבסיס צבאי.\n-נמנעים מלעלות תמונות על מדים לרשתות.\n-פרופיל פרטי באינסטגרם.\n-לא מעלים לרשת חומרים צבאיים העולים על סיווג בלמ”ס.\n-לא מזדהים כאנשי צבא.\n-לא מתכתבים בנושאים צבאיים.\n\n-האויב מפעיל דמויות פקטיביות שמקיימות שיח וקשר עם ישראלים תוך מיקוד באוכלוסיית משרתים בסדיר ומילואים.\n-האויב לוקח מידע מהתמונות שאנו מעלים לרשת .",
+    x: 75,
+    y: 35
+  },
+  {
+    title: "מחשב צבאי",
+    text: "הנחיות לפעילות במחשב צבאי:\n -אסור לחבר אף כבל חיצוני למחשב צבאי.\n-אין להעביר מידע מסווג יותר מסיווג המחשב.",
+    x: 65,
+    y: 60
+  },
+  {
+    title: "סיווגים",
+    text: "בלמס: כל מידע בלי שום ערך, שיכול להגיע לקהל הרחב.\nשמור 5: הסיווג של כלל חיילי צה”ל אותו מקבלים בבקום, תוכן בסיווג בטחוני שמור זהו תוכן שמיועד לחיילי צה”ל בלבד. חומר בעל ערך נמוך, שלא היינו רוצים שיגיע לידי כל אחד מטעמי ביטחון ושמירה על המערכת. (לדוגמא: מידע מפורט על רק”ם ותפעולו, מידע אישי על חייל).\n סודי 4: תוכן בסיווג בטחוני זה הוא תוכן בעל ערך שחשיפתו יכולה לפגוע באופן ממשי בחייל. חומר יותר רגיש, שמצריך מידור (לדוגמא: סד”כ כוחות).\nסודי ביותר 3: תוכן בסיווג בטחוני סודי ביותר הוא תוכן בעל ערך רב שחשיפה שלו יכולה להזיק מאוד לצבא ולאזרחים. (לדוגמא: תוכניות אופרטיביות, ערכות שו”ב, משואה).\n",
+    x: 20,
+    y: 75
+  },
+  {
+    title: "עשרת כללי שמירת הבטחון מידע",
+    text: "1)על נושאים מסווגים משוחחים רק עם מורשים.\n2)מסמך מסווג שלא צריכים-גורסים.\n3)לא יוצאים מבסיס עם מסמכים מסווגים  ללא כלל האישורים המתאימים ( מפקד, קב”מ).\n4)אל מחשב צבאי לא מחברים מדיה מגנטית, מכשיר סלולרי או כל אמצעי שלא סופר על ידי צה”ל.\n5).חיבורים למחשבים צבאיים מתבצעים רק על ידי גורמי התקשוב בחטיבה\n6)חל איסור על צילום במתחם מסווג או עם מידע מסווג.\n7)אל הרשתות החברתיות מעלים רק מידע בלמ”ס ושאינו כולל את תפקידכם, מיקומכם וכל מידע אחר שעלול להיות רגיש.\n8)וודאו שאתם לוחצים רק על קישורים מוכרים. לחיצה על קישור זדוני-עלולה להוביל לגישה למכשיר סלולרי.\n9)לא מעבירים דרך הסלולרי מידע מסווג.\n10)למתחמים מסווגים נכנסים ללא אמצעים משדרים.",
+    x: 60,
+    y: 55
+  },
+  {
+    title: "סיום הלומדה",
+    text: "אני מתחייב.ת שקראתי והבנתי את כל הנושאים בלומדה.",
+    x: 75,
+    y: 70
+  }
+];
+
+let currentTopic = 0;
+
+function closePopup() {
+  document.getElementById("popup").classList.add("hidden");
+  showMarker();
+}
+
+function showMarker() {
+  const markers = document.getElementById("markers");
+  markers.innerHTML = "";
+
+  const topic = topics[currentTopic];
+  if (!topic) return;
+
+  const marker = document.createElement("button");
+  marker.className = "map-marker";
+  marker.style.left = topic.x + "%";
+  marker.style.top = topic.y + "%";
+
+  const image = document.createElement("img");
+  image.src = "assets/elements/x.png";
+  image.alt = "פתחי את " + topic.title;
+
+  const label = document.createElement("span");
+  label.textContent = topic.title;
+
+  marker.append(image, label);
+  marker.onclick = openTopic;
+
+  markers.appendChild(marker);
+}
+
+function openTopic() {
+  const topic = topics[currentTopic];
+
+  document.getElementById("topicTitle").textContent = topic.title;
+  document.getElementById("topicText").textContent = topic.text;
+
+  const nextBtn = document.getElementById("nextBtn");
+  nextBtn.textContent = currentTopic === 6
+    ? "סיום הלומדה"
+    : "סיימתי לקרוא";
+
+  document.getElementById("topicPopup").classList.remove("hidden");
+}
+
+function closeTopic() {
+  document.getElementById("topicPopup").classList.add("hidden");
+}
+
+function finishTopic() {
+  closeTopic();
+
+  if (currentTopic === 6) {
+    document.getElementById("topicTitle").textContent =
+      "הלומדה הסתיימה בהצלחה!";
+    document.getElementById("topicText").textContent =
+      "סיימת לעבור על כל הנושאים.";
+    document.getElementById("nextBtn").classList.add("hidden");
+    document.getElementById("topicPopup").classList.remove("hidden");
+    return;
+  }
+
+  currentTopic++;
+  showMarker();
+}
+
+  </script>
+<style>
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      height: 50vh;
+      padding: 30px;
+      background: #ffedc4ea;
+      border-radius: 10px;
+      box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      border: none;
+      color: #023B59;
+      background: none;
+      font-size: 25px;
+      width: 10vw;
+      cursor: pointer;
+    }
+
+    .popuph2 {
+      position: absolute;
+      top: 8px;
+      text-align: center;
+      right: 0vw;
+      border: none;
+      color: #023B59;
+      background: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+ 
+    .txt {
+      position: absolute;
+      top: 80px;
+      text-align: center;
+      right: 3vw;
+      border: none;
+      direction: rtl;
+      width: 70vw;
+      color: #023B59;
+      background: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
 
 
+    .popup.hidden {
+      display: none;
+    }
+
+    
+.map-container {
+  position: relative;
+  width: 100%;
+}
+
+.map-container .map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#markers {
+  position: absolute;
+  inset: 0;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.map-marker img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.map-marker span {
+  color: #023B59;
+  padding: 0px 0px;
+  font-family: "oscar";
+  border-radius: 5px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.next-btn {
+  position: absolute;
+  bottom: 10px;
+  font-family: "oscar";
+  left: 50%;
+  width: 50vw;
+  transform: translateX(-50%);
+  padding: 6px 20px;
+  background: #023B59;
+  color: #ffedc4ea;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url("assets/bg/bg.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    margin-top: 20vh;
+}
 
 
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-<script src="main.js"></script>
+    width: 80vw;
+    height: 68vh;
+    box-sizing: border-box;
+    padding: 75px 30px 65px;
+
+    background: #ffedc4ea;
+    border-radius: 10px;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+
+    z-index: 1000;
+    text-align: center;
+    overflow: hidden;
+}
+
+.popup-close {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    border: none;
+    color: #023B59;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.popuph2 {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 10px);
+    margin: 0;
+direction: rtl;
+    color: #023B59;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.txt {
+    position: static;
+
+    width: 100%;
+    height: 100%;
+    margin-top: 20px ;
+    box-sizing: border-box;
+
+    direction: rtl;
+    text-align: center;
+    color: #023B59;
+    background: none;
+
+    font-size: 1.2rem;
+    line-height: 1.2;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+    padding: 0px 1px 3px;
+    cursor: default;
+}
+.txt {
+    /* כל ההגדרות הקיימות שלך */
+
+    white-space: pre-line;
+}
+  </style>
 </body>
 </html>
-
-<script>
-function goToQ() {
-    window.location.href = "questions.html";
-}
-</script>
