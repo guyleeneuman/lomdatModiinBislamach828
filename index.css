@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("assets/bg/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    direction: ltr;
+    font-family: "oscar";
+}
+
+/* ---------------- FONT ---------------- */
+@font-face {
+    font-family:oscar;
+    src: url("assets/fonts/Assistant-Regular.ttf");
+}
+
+@font-face {
+    font-family:oscar1;
+    src: url("assets/fonts/Assistant-Light.ttf");
+}
+
+.navbar {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    width: 95%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    width:85vw;
+    transform: translate(-50%, -50%);
+}
+
+.map {
+    position: relative;
+    display: block;
+    top: auto;
+    left: auto;
+    width: 93vw;
+    height: auto;
+    margin: 0 auto;
+    transform: none;
+}
+
+.button {
+    cursor: pointer;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vw;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.button:hover {
+    transform: translateX(-50%) scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+}
+
+.button:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+
+.byGuylee{
+    position: absolute;
+    top:95%;
+    left: 50%;
+    width:90vw;
+    transform: translate(-50%, -50%);
+    z-index: 1000000;
+    color: #FFEDC4;
+    text-align: center;
+}
+
